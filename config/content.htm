@@ -459,6 +459,68 @@ ctx.translate(flag_w*2.5, flag_h/2)   # 移動旋轉中心到旗子中點
 ctx.rotate(math.pi/4)                  # 旋轉 45 度
 draw_taiwan_flag(ctx, x_offset=-flag_w/2, y_offset=-flag_h/2)
 ctx.restore</pre>
+<h3>機器人走出七段顯示器格式的數字</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#請修正以下程式讓機器人可以走出七段顯示器格式的數字
+from robot_lib import World as BaseWorld, AnimatedRobot as BaseRobot, timer, CELL_SIZE
+
+# --- 1. 定義世界（加入細格） ---
+class MyWorld(BaseWorld):
+    def __init__(self, width=12, height=10, sub_cell=5):
+        super().__init__(width, height)
+        self.sub_cell = sub_cell
+        self.sub_size = CELL_SIZE // sub_cell
+        self._draw_fine_grid()
+
+    def _draw_fine_grid(self):
+        ctx = self.layers["grid"].getContext("2d")
+        ctx.strokeStyle = "#e0e0e0"
+        ctx.lineWidth = 0.5
+        # 畫垂直細線
+        for i in range(self.width * self.sub_cell + 1):
+            x = i * self.sub_size
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, self.height * CELL_SIZE); ctx.stroke()
+        # 畫水平細線
+        for j in range(self.height * self.sub_cell + 1):
+            y = j * self.sub_size
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(self.width * CELL_SIZE, y); ctx.stroke()
+
+    # 細格座標轉換為像素座標
+    def sub_to_px(self, sub_x, sub_y):
+        big_x = sub_x // self.sub_cell
+        big_y = sub_y // self.sub_cell
+        offset_x = (sub_x % self.sub_cell) * self.sub_size
+        offset_y = (sub_y % self.sub_cell) * self.sub_size
+        px = big_x * CELL_SIZE + offset_x + self.sub_size // 2
+        py = big_y * CELL_SIZE + offset_y + self.sub_size // 2   # ← 改這行
+        return px, py
+
+        
+        # BaseWorld 的 Y 軸是從下往上。
+        # sub_y 越大 (數值上往下)，py 越大 (螢幕上往下)。
+        # 因此，我們傳入的 sub_y 應該是「Y 越大越往下」的座標。
+        # 七段顯示器的 PATHS 已經被預先反轉了，所以這裡不需要額外處理。
+        py = (self.height - 1 - big_y) * CELL_SIZE + offset_y + self.sub_size // 2
+        return px, py
+
+    # 在細格座標上畫線
+    def draw_line(self, x1, y1, x2, y2):
+        ctx = self.layers["objects"].getContext("2d")
+        ctx.strokeStyle = "#d33"
+        ctx.lineWidth = 9
+        ctx.lineCap = "round"
+        ctx.beginPath()
+        ctx.moveTo(*self.sub_to_px(x1, y1))
+        ctx.lineTo(*self.sub_to_px(x2, y2))
+        ctx.stroke()
+
+# --- 2. 定義機器人（以細格移動） ---
+class MyRobot(BaseRobot):
+    def __init__(self, world, start_big_x=1, start_big_y=1):
+        super().__init__(world, start_big_x, start_big_y)
+        # 初始位置轉換為細格中心
+        self.sub_x = start_big_x * world.sub_cell + world.sub_cell // 2
+        self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2
+        self.robot_size = world.sub_size * 1.8</pre>
 <p></p>
 <script>
 function getUrlParam(key) {
