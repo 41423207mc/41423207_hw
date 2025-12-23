@@ -2,7 +2,7 @@
         <head>
         <title>cp2025_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,40 +142,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Brython << <a href='Brython.html'>Previous</a> <a href='w2.html'>Next</a> >> w2<br /><h1>Pyodide3</h1>
-<p>Pyodide3 則在 <a href="https://mde.tw/cp2025/content/Pyodide.html">Pyodide</a> 與 <a href="https://mde.tw/cp2025/content/Pyodide2.html">Pyodide2</a> 頁面架構下，進一步導入 <a href="https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/9f43571ec070ea3e24b083525ee27275a96efcc8/robot_w_world.py">robot_w_world.py</a>，在既有的水平圍牆 <a href="https://mde.tw/cp2025/reeborg/src/images/north.png">north.png</a> 與垂直圍牆 <a href="https://mde.tw/cp2025/reeborg/src/images/east.png">east.png</a> 檔案之外，加入 <a href="https://mde.tw/cp2025/reeborg/src/images/carrot.png">carrot.png</a>、<a href="https://mde.tw/cp2025/reeborg/src/images/grass.png">grass.png</a> 與 <a href="https://mde.tw/cp2025/reeborg/src/images/pale_grass.png">pale_grass.png</a> 等圖檔。並且擴充可從 URL 讀進 json 格式的 world 變數功能，以便製作出更多元的場景任務，要求機器人執行。</p>
-<p>其中 src URL 變數，可以將網路上的機器人控制程式導入 Pyodide3 頁面外，world URL 變數則可以導入源自 <a href="https://mde.tw/reeborg">Reeborg</a> 機器人程式所設定的 json 格式場景。</p>
-<p>由於 Reeborg 系統中的 png 圖檔均非透明背景，<a href="https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/9f43571ec070ea3e24b083525ee27275a96efcc8/robot_w_world.py">robot_w_world.py</a> 必須利用 HTML 中的 CANVAS，將關鍵的白色背景，以透明的方式顯示。</p>
-<p>src URL 變數讀進 <a href="https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/8ac3ce859d6aec327b7859e091168270d6a951f7/pyodide2_turn_right.py">turn_right 程式</a>，而 world URL 變數則讀進 <a href="https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/43517f3f54a5ac24d55d5a5cf8d316e6db2f3b65/harvest2.json">harvest2.json</a>，執行<a href="https://mde.tw/cp2025/content/Pyodide3.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/8ac3ce859d6aec327b7859e091168270d6a951f7/pyodide2_turn_right.py&amp;world=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/43517f3f54a5ac24d55d5a5cf8d316e6db2f3b65/harvest2.json">結果</a>。</p>
-<p>讀進 <a href="https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/1b1c26eca7f5d772c6301bae865efaddb00a87bb/harvest3.json">harvest3.json</a>, 執行<a href="https://mde.tw/cp2025/content/Pyodide3.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/8ac3ce859d6aec327b7859e091168270d6a951f7/pyodide2_turn_right.py&amp;world=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/9f43571ec070ea3e24b083525ee27275a96efcc8/harvest3.json">結果</a>。</p>
-<p>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-</p>
-<p><button id="version">version</button> <button id="hello_button">hello</button> <button id="add1to100">1 add to 100</button> <button id="robot1">機器人巡邏</button> <button id="free_walk">自由行</button> <button id="numpy_ode">numpy_ode</button></p>
-<!-- Ace Editor Scripts -->
-<p>
-<script src="./../cmsimde/static/ace/FileSaver.min.js"></script>
-<script src="./../cmsimde/static/ace/filereader.js"></script>
-<script src="./../cmsimde/static/ace/ace.js"></script>
-<script src="./../cmsimde/static/ace/ext-language_tools.js"></script>
-<script src="./../cmsimde/static/ace/mode-python.js"></script>
-<script src="./../cmsimde/static/ace/snippets/python.js"></script>
-</p>
-<!-- Editor 1 -->
-<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><button id="kw_run1">Run</button> <button id="kw_output1">Output</button> <button id="kw_clear_console1">清除輸出區</button> <button onclick="location.reload()">Reload</button></p>
-<p><textarea id="kw_console1"></textarea></p>
-<div id="pyodide_div1"></div>
-<div id="mpl_output1"></div>
-<div id="brython_div1"></div>
-<hr/>
-<p>從 1 累加到 100 part2:</p>
-<p><button id="add1to100part2">1 add to 100</button></p>
-<!-- Editor 2 -->
-<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><button id="kw_run2">Run</button> <button id="kw_output2">Output</button> <button id="kw_clear_console2">清除輸出區</button> <button onclick="location.reload()">Reload</button></p>
-<p><textarea id="kw_console2"></textarea></p>
-<br />Brython << <a href='Brython.html'>Previous</a> <a href='w2.html'>Next</a> >> w2</div>
+    <div id="tipue_search_content">w2 << <a href='w2.html'>Previous</a> <a href='國旗.html'>Next</a> >> 國旗<br /><h1>W12</h1>
+<br />w2 << <a href='w2.html'>Previous</a> <a href='國旗.html'>Next</a> >> 國旗</div>
         
     <!-- footer -->
       <div class="container">
