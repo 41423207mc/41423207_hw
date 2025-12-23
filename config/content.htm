@@ -389,7 +389,76 @@ for i in range(z):
 if x % 2 != 0:
     r.move(steps)</pre>
 <h1>W12</h1>
-<h2>國旗</h2>
+<p></p><h2>國旗</h2>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document as doc
+from browser import html
+import math
+
+canvas = html.CANVAS(width=600, height=400)
+canvas.id = "taiwan_flag"
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ctx = canvas.getContext("2d")
+
+flag_w = canvas.width / 3   # 分三份畫布，三個旗
+flag_h = canvas.height
+
+def draw_taiwan_flag(ctx, x_offset=0, y_offset=0):
+    # 平移到指定偏移
+    ctx.save()
+    ctx.translate(x_offset, y_offset)
+    
+    # 畫紅底
+    ctx.fillStyle='rgb(255, 0, 0)'
+    ctx.fillRect(0, 0, flag_w, flag_h)
+    
+    # 畫藍天
+    ctx.fillStyle='rgb(0, 0, 150)'
+    ctx.fillRect(0, 0, flag_w/2, flag_h/2)
+    
+    # 畫十二道光芒白日
+    circle_x = flag_w/4
+    circle_y = flag_h/4
+    star_radius = flag_w/8
+    ctx.beginPath()
+    angle = 0
+    for i in range(24):
+        angle += 5*math.pi*2/12
+        toX = circle_x + math.cos(angle)*star_radius
+        toY = circle_y + math.sin(angle)*star_radius
+        if i:
+            ctx.lineTo(toX, toY)
+        else:
+            ctx.moveTo(toX, toY)
+    ctx.closePath()
+    ctx.fillStyle = '#fff'
+    ctx.fill()
+    
+    # 藍圈
+    ctx.beginPath()
+    ctx.arc(circle_x, circle_y, flag_w*17/240, 0, math.pi*2, True)
+    ctx.closePath()
+    ctx.fillStyle = 'rgb(0,0,149)'
+    ctx.fill()
+    
+    # 白心
+    ctx.beginPath()
+    ctx.arc(circle_x, circle_y, flag_w/16, 0, math.pi*2, True)
+    ctx.closePath()
+    ctx.fillStyle = '#fff'
+    ctx.fill()
+    
+    ctx.restore()
+# 畫 90 度國旗
+draw_taiwan_flag(ctx, x_offset=0, y_offset=0)
+
+# 畫順時針 45 度國旗
+ctx.save()
+ctx.translate(flag_w*2.5, flag_h/2)   # 移動旋轉中心到旗子中點
+ctx.rotate(math.pi/4)                  # 旋轉 45 度
+draw_taiwan_flag(ctx, x_offset=-flag_w/2, y_offset=-flag_h/2)
+ctx.restore</pre>
+<p></p>
 <script>
 function getUrlParam(key) {
   return new URLSearchParams(window.location.search).get(key);
