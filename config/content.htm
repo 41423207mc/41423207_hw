@@ -540,7 +540,50 @@ class MyRobot(BaseRobot):
         self.robot_size = world.sub_size * 1.8</pre>
 <h2>W13</h2>
 <h3>垂直巡邏</h3>
-<h3>水平巡邏</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
+w = World(10, 10)
+r = AnimatedRobot(w, 1, 1)
+def turn_right():
+    for i in range(3):
+        r.turn_left()
+r.turn_left()
+def e04():
+    for i in range(4):
+        r.move(9)
+        turn_right()
+        r.move(1)
+        turn_right()
+        r.move(9)
+        r.turn_left()
+        r.move(1)
+        r.turn_left()
+e04()
+r.move(9)
+turn_right()
+r.move(1)
+turn_right()
+r.move(9)</pre>
+<p><br/><br/></p><h3>水平巡邏</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
+w = World(10, 10)
+r = AnimatedRobot(w, 1, 1)
+def turn_right():
+    r.turn_left()
+    r.turn_left()
+    r.turn_left()
+    
+def round():
+    for i in range(5):
+        r.move(9)
+        r.turn_left()
+        r.move(1)
+        r.turn_left()
+        r.move(9)
+        turn_right()
+        r.move(1)
+        turn_right()
+round()</pre>
+<p></p>
 <script>
 function getUrlParam(key) {
   return new URLSearchParams(window.location.search).get(key);

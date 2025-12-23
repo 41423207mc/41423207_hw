@@ -143,7 +143,30 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">W13 << <a href='W13.html'>Previous</a> <a href='水平巡邏.html'>Next</a> >> 水平巡邏<br /><h1>垂直巡邏</h1>
-<br />W13 << <a href='W13.html'>Previous</a> <a href='水平巡邏.html'>Next</a> >> 水平巡邏</div>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
+w = World(10, 10)
+r = AnimatedRobot(w, 1, 1)
+def turn_right():
+    for i in range(3):
+        r.turn_left()
+r.turn_left()
+def e04():
+    for i in range(4):
+        r.move(9)
+        turn_right()
+        r.move(1)
+        turn_right()
+        r.move(9)
+        r.turn_left()
+        r.move(1)
+        r.turn_left()
+e04()
+r.move(9)
+turn_right()
+r.move(1)
+turn_right()
+r.move(9)</pre>
+<p><br/><br/></p><br />W13 << <a href='W13.html'>Previous</a> <a href='水平巡邏.html'>Next</a> >> 水平巡邏</div>
         
     <!-- footer -->
       <div class="container">
