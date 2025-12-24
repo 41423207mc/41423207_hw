@@ -341,6 +341,9 @@ doc["aitetris"].bind("click", aitetris.do)
 <div id="kw_editor2" style="width: 600px; height: 300px;"></div>
 <p><button id="kw_run2">Run</button> <button id="kw_output2">Output</button> <button id="kw_clear_console2">清除輸出區</button> <button onclick="location.reload()">Reload</button></p>
 <p><textarea id="kw_console2"></textarea></p>
+<h1>操作影片</h1>
+<p><span data-teams="true">三個 Brython 程式操作影片紀錄: </span><a href="https://youtu.be/Lmf3kmJaNz0">https://youtu.be/Lmf3kmJaNz0</a></p>
+<p></p>
 <h1>作業區</h1>
 <h2>w2</h2>
 <p></p>
@@ -406,8 +409,8 @@ r.move(2)        # 左下斜 (下半斜線)
 r.turn_left()    # 面向右準備畫下一個數字</pre>
 <p><br/><br/></p>
 <h2>W12</h2>
-<p></p>
-<h3>國旗</h3>
+<p>1.國旗</p>
+<p>2.機器人走出七段顯示器格式的數字</p><h3>國旗</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document as doc
 from browser import html
 import math
@@ -539,7 +542,8 @@ class MyRobot(BaseRobot):
         self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2
         self.robot_size = world.sub_size * 1.8</pre>
 <h2>W13</h2>
-<h3>垂直巡邏</h3>
+<p>1.垂直巡邏</p>
+<p>2.水平巡邏</p><h3>垂直巡邏</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
 w = World(10, 10)
 r = AnimatedRobot(w, 1, 1)
@@ -563,7 +567,8 @@ turn_right()
 r.move(1)
 turn_right()
 r.move(9)</pre>
-<p><br/><br/></p><h3>水平巡邏</h3>
+<p><br/><br/></p>
+<h3>水平巡邏</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
 w = World(10, 10)
 r = AnimatedRobot(w, 1, 1)
