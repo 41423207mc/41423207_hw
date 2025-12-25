@@ -143,23 +143,38 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">W7 << <a href='W7.html'>Previous</a> <a href='W12.html'>Next</a> >> W12<br /><h1>W11</h1>
+<p>學號末三碼</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from robot_lib import World, AnimatedRobot
-
-w = World(20, 10)
-r = AnimatedRobot(w, 2, 5)
-
-# 畫數字 2 從上往下
-# 初始位置 r 面向右
-r.move(3)        # 上橫 (上面一橫)
-r.turn_left()    # 轉向下
-r.move(2)        # 右上斜 (斜向下)
-r.turn_left()    # 轉向左
-r.move(3)        # 中間橫
-r.turn_right()   # 轉向下 (如果沒有 turn_right 用三次 turn_left)
-r.move(2)        # 左下斜 (下半斜線)
-r.turn_left()    # 面向右準備畫下一個數字</pre>
-<p><br/><br/></p>
-<br />W7 << <a href='W7.html'>Previous</a> <a href='W12.html'>Next</a> >> W12</div>
+def turn_right():
+    r.turn_left()
+    r.turn_left()
+    r.turn_left()
+w = World(15, 10)
+r = AnimatedRobot(w, 1, 9)
+r.move(3)
+turn_right()
+r.move(2)
+turn_right()
+r.move(3)
+r.turn_left()
+r.move(2)
+r.turn_left()
+r.move(3)
+r = AnimatedRobot(w, 5, 9)
+r.move(3)
+turn_right()
+r.move(4)
+turn_right()
+r.move(3)
+turn_right()
+r.move(4)
+    
+r = AnimatedRobot(w, 9, 9)
+for _ in range(1):
+    r.move(3)
+    turn_right()
+    r.move(4)</pre>
+<p><br/><br/></p><br />W7 << <a href='W7.html'>Previous</a> <a href='W12.html'>Next</a> >> W12</div>
         
     <!-- footer -->
       <div class="container">
